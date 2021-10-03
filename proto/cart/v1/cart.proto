@@ -29,7 +29,8 @@ message CartItem {
 }
 
 message AddItemRequest {
-  CartItem cartItem = 1;
+  UUID cartId = 1;
+  CartItem cartItem = 2;
 }
 
 message AddItemReply {
