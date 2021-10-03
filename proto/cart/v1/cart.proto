@@ -1,0 +1,36 @@
+syntax = "proto3";
+package proto.greeter.v1;
+
+service CartService {
+  rpc AddItem (AddItemRequest) returns (AddItemReply) {}
+  rpc GetCartAsStream (CartRequest) returns (stream Cart) {}
+}
+
+message UUID {
+  int64 mostSigBits = 1;
+  int64 leastSigBits = 2;
+}
+
+message CartRequest {
+  UUID cartId = 1;
+}
+
+message Cart {
+  UUID cartId = 1;
+  repeated CartItem items = 2;
+}
+
+message CartItem {
+  string name = 1;
+  float price = 2;
+  string currency = 3;
+  uint32 quantity = 4;
+}
+
+message AddItemRequest {
+  CartItem cartItem = 1;
+}
+
+message AddItemReply {
+  CartItem cartItem = 1;
+}
